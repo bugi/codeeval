@@ -1,0 +1,14 @@
+#!/usr/bin/python2
+
+import sys
+
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        fileLocation = sys.argv[1].strip()
+        inputDataFile = open(fileLocation, 'r')
+        n = 0
+        for i in inputDataFile:
+            n += int( i.strip() )
+        print n
+    else:
+        print "boo"
