@@ -1,0 +1,28 @@
+#!/usr/bin/python2
+
+import sys
+
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        fn = sys.argv[1].strip()
+        fi = open(fn, 'r')
+        for line in fi:
+            W = line.strip().split()
+            x = int(W[0])
+            y = int(W[1])
+            first = 1
+            for i in range(1, 1+int(W[2])):
+                F = 0
+                B = 0
+                if i % x == 0: F = 1
+                if i % y == 0: B = 1
+                if first: first = 0
+                else: print " ",
+                if F + B > 0:
+                    if F: sys.stdout.write('F')
+                    if B: sys.stdout.write('B')
+                else:
+                    sys.stdout.write(str(i))
+            print
+    else:
+        print "this test requires an input file"
