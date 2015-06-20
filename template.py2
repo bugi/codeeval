@@ -1,0 +1,12 @@
+#!/usr/bin/python2
+
+import sys
+
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        fn = sys.argv[1].strip()
+        fi = open(fn, 'r')
+        for line in fi:
+            print int(line.strip())
+    else:
+        print "boo!"
