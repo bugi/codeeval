@@ -1,0 +1,20 @@
+#!/usr/bin/python2
+
+# https://www.codeeval.com/open_challenges/20/
+
+import sys
+
+def doit(line_raw):
+    print line_raw.rstrip().lower()
+
+
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        fn = sys.argv[1].strip()
+        fi = open(fn, 'r')
+        for line in fi:
+            if line == '\n': continue
+            doit(line)
+        fi.close()
+    else:
+        print "boo!"
