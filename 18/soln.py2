@@ -1,0 +1,28 @@
+#!/usr/bin/python2
+
+import sys
+
+def is_power_of_2(x):
+    if not x > 0: return False
+    return not ( x & (x-1) )
+
+def doit(line_raw):
+    line = line_raw.strip()
+    a = line.split(',')
+    x = int(a[0])
+    n = int(a[1])
+    if not is_power_of_2(n) : return
+    y = n
+    while y < x:
+        y += n
+    print y
+
+
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        fn = sys.argv[1].strip()
+        fi = open(fn, 'r')
+        for line in fi:
+            doit(line)
+    else:
+        print "boo!"
