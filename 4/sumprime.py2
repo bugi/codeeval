@@ -1,0 +1,23 @@
+#!/usr/bin/python2
+
+# https://www.codeeval.com/open_challenges/4/
+
+def isprime(n):
+    if n < 2: return False
+    if n == 2: return True
+    if n % 2 == 0: return False  # reject even numbers
+    for x in range(3, int( n ** 0.5 )+1, 2):
+        if n % x == 0: return False
+    return True
+
+
+if __name__ == '__main__':
+    S = 2
+    cnt = 1
+    i = 3
+    while cnt < 1000:
+        if isprime(i):
+            cnt += 1
+            S += i
+        i += 2
+    print S
