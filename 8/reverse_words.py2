@@ -1,0 +1,15 @@
+#!/usr/bin/python2
+
+import sys
+import string
+
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        fn = sys.argv[1].strip()
+        fi = open(fn, 'r')
+        for line in fi:
+            L = line.rstrip()
+            if len(L) == 0: continue
+            print string.join(reversed(L.split()))
+    else:
+        print "boo!"
