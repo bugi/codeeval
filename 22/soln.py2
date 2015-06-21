@@ -1,0 +1,26 @@
+#!/usr/bin/python2
+
+# https://www.codeeval.com/open_challenges/22/
+
+import sys
+
+def fib(n):
+    if n == 0: return 0
+    if n == 1: return 1
+    if n > 1: return fib(n-1) + fib(n-2)
+    return None
+
+def doit(line_raw):
+    print fib( int(line_raw.strip()) )
+
+
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        fn = sys.argv[1].strip()
+        fi = open(fn, 'r')
+        for line in fi:
+            if line == '\n': continue
+            doit(line)
+        fi.close()
+    else:
+        print "boo!"
