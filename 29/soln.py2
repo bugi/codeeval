@@ -1,0 +1,26 @@
+#!/usr/bin/python2
+
+# https://www.codeeval.com/open_challenges/29/
+
+import sys
+
+def doit(line_raw):
+    seen = {}
+    result = []
+    for i in line_raw.strip().split(',') :
+        if i in seen: continue
+        seen[i] = 1
+        result.append(i)
+    print ','.join( result )
+
+
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        fn = sys.argv[1].strip()
+        fi = open(fn, 'r')
+        for line in fi:
+            if line == '\n': continue
+            doit(line)
+        fi.close()
+    else:
+        print "boo!"
