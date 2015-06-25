@@ -1,0 +1,37 @@
+#!/usr/bin/python2
+
+# https://www.codeeval.com/open_challenges/39/
+# https://en.wikipedia.org/wiki/Happy_number
+
+import sys
+
+def happy(i, sequence):
+    # print "{} -- {}".format(i, sequence)
+    if i == 1: return 1
+    x = 0
+    for c in `i`:
+        C = int(c)
+        y = C * C
+        x += y
+    if x == 1: return 1
+    if x in sequence: return 0
+    S = list(sequence)
+    S.append(x)
+    return happy(x, S)
+
+def doit(line_raw):
+    i = line_raw.strip()
+    I = int(i)
+    print happy(I, (I,))
+
+
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        fn = sys.argv[1].strip()
+        fi = open(fn, 'r')
+        for line in fi:
+            if line == '\n': continue
+            doit(line)
+        fi.close()
+    else:
+        print "boo!"
