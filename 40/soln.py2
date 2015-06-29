@@ -1,0 +1,53 @@
+#!/usr/bin/python2
+
+# https://www.codeeval.com/open_challenges/40/
+
+import sys
+
+def doit(line_raw):
+    line = line_raw.strip()
+    L = map(lambda i: int(i), line)
+
+    # find real distribution
+    D = {}
+    for x in L:
+        if x in D:
+            D[x] += 1
+        else:
+            D[x] = 1
+
+    # find described distribution
+    DD = {}
+    for i, x in enumerate(L):
+        y = filter(lambda j: i == j, L)
+        ly = len(y)
+        if ly != 0:
+            DD[i] = ly
+
+    if len(D) != len(DD):
+        print "0" ; return
+
+    for x in D:
+        if x not in DD:
+            print "0" ; return
+        if D[x] != DD[x]:
+            print "0" ; return
+
+    for x in DD:
+        if x not in D:
+            print "0" ; return
+        if D[x] != DD[x]:
+            print "0" ; return
+
+    print "1"
+
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        fn = sys.argv[1].strip()
+        fi = open(fn, 'r')
+        for line in fi:
+            if line == '\n': continue
+            doit(line)
+        fi.close()
+    else:
+        print "boo!"
