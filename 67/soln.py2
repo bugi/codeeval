@@ -1,0 +1,37 @@
+#!/usr/bin/python2
+
+# https://www.codeeval.com/open_challenges/67/
+
+import sys
+
+def hex2dec_digit(h):
+    if h == 'f': return 15
+    if h == 'e': return 14
+    if h == 'd': return 13
+    if h == 'c': return 12
+    if h == 'b': return 11
+    if h == 'a': return 10
+    return int(h)
+
+def hex2dec(hn):
+    # the easy way: return int(hn, 16)
+    d = 0
+    for c in hn:
+        d = d*16 + hex2dec_digit(c)
+    return d
+
+def doit(line_raw):
+    line = line_raw.strip()
+    print hex2dec(line)
+
+
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        fn = sys.argv[1].strip()
+        fi = open(fn, 'r')
+        for line in fi:
+            if line == '\n': continue
+            doit(line)
+        fi.close()
+    else:
+        print "boo!"
