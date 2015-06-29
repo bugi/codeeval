@@ -1,0 +1,55 @@
+#!/usr/bin/python2
+
+# https://www.codeeval.com/open_challenges/2/
+
+import sys
+
+
+def doit(fi):
+    n_lines = None
+    lines = []
+    for line_raw in fi:
+        if line_raw == '\n': continue
+        line = line_raw.strip()
+        if n_lines is None:
+            n_lines = int( line )
+            continue
+        lines.append( line )
+    lines.sort(key=len, reverse=True)
+    for i, l in enumerate(lines):
+        if i < n_lines:
+            print l
+        else:
+            return
+
+
+def doit_lowmem(fi):
+    # This version minimizes the size of the list.
+    n_lines = None
+    lines = []
+    for line_raw in fi:
+        if line_raw == '\n': continue
+        line = line_raw.strip()
+        if n_lines is None:
+            n_lines = int( line )
+            continue
+        if len(lines) >= n_lines :
+            if len(line) > len(lines[-1]) :
+                lines.append( line )
+                lines.sort(key=len, reverse=True)
+                del lines[-1]
+        else:
+            lines.append( line )
+    for l in lines:
+        print l
+
+
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        fn = sys.argv[1].strip()
+        fi = open(fn, 'r')
+        # doit(fi)
+        doit_lowmem(fi)
+        fi.close()
+    else:
+        print "boo!"
